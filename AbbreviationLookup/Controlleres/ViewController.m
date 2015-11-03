@@ -62,9 +62,21 @@
 
 
     } failureHandler:^(NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:_mainView animated:YES];
-        NSLog(@"Error: %@", error);
+        [self alertUserAboutError:error];
     }];
+}
+
+- (void) alertUserAboutError:(NSError *)error {
+    [MBProgressHUD hideAllHUDsForView:_mainView animated:YES];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                   message:[NSString stringWithFormat:@"Error: %@", [error localizedDescription]]
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -72,7 +84,7 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [self getFullFormsForAbbreviation:searchBar.text];
+    [self getFullFormsForAbbreviation:_searchBar.text];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
