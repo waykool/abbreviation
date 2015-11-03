@@ -1,8 +1,8 @@
 //
 //  Services.m
-//  AcromineLookUp
+//  AbbreviationLookup
 //
-//  Created by Pedro Peres on 11/1/15.
+//  Created by Pedro Peres on 11/2/15.
 //  Copyright © 2015 Pedro Peres. All rights reserved.
 //
 

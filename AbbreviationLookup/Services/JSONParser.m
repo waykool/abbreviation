@@ -1,8 +1,8 @@
 //
 //  JSONParser.m
-//  AcromineLookUp
+//  AbbreviationLookup
 //
-//  Created by Pedro Peres on 11/1/15.
+//  Created by Pedro Peres on 11/2/15.
 //  Copyright (c) 2015 Pedro Peres. All rights reserved.
 //
 
@@ -21,11 +21,14 @@ NSString *const kAbbreviationKey = @"lf";
 + (NSArray *)parseFullFormsFromDictionary:(NSArray *)data
 {
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
-     NSArray *responseList = data[0][kListOfAbbreviationKey];
 
-    for (NSDictionary *object in responseList) {
-        NSString *acromine = object[kAbbreviationKey];
-        [returnArray addObject: [acromine capitalizedString]];
+    if(data.count > 0) {
+        NSArray *responseList = data[0][kListOfAbbreviationKey];
+
+        for (NSDictionary *object in responseList) {
+            NSString *acromine = object[kAbbreviationKey];
+            [returnArray addObject: [acromine capitalizedString]];
+        }
     }
 
     return returnArray;
